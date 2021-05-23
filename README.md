@@ -14,7 +14,7 @@ Lin et al. proposes a new method that is able to achieve much higher quality res
 
 ![alt text](https://github.com/DarrelYee/Background_Matting_Tutorial/blob/main/model.png)
 
-At a high level, the model first uses a base encoder-decoder network to form a basic alpha mask, as well as an error map which is used for further fine-tuning. In the refinement network, regions proposed by the error map are used to provide high-resolution matting details, usually to the edges of the subject. The output of this model is the alpha map and foreground residual, which can then be composited to obtain the subject foreground. The model is trained on VideoMatte240K and PhotoMatte13K/85 datasets with alpha masks created from chroma key methods.
+At a high level, the model first uses a base encoder-decoder network to form a basic alpha mask, as well as an error map which is used for further fine-tuning. In the refinement network, regions proposed by the error map are used to provide high-resolution matting details, usually to the edges of the subject. The output of this model is the final alpha mask and foreground residual, which can then be composited to obtain the subject foreground. The model is trained on VideoMatte240K and PhotoMatte13K/85 datasets with alpha masks created from chroma key methods.
 
 More can be read from their paper (link above!), but for now let's move on to some implementation!
 
