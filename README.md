@@ -10,7 +10,7 @@ Link to paper: https://arxiv.org/abs/2012.07810
 
 Exisiting background removal methods tend to use a binary mask to separate the foreground subject from the background; see above image for an example of Zoom's implementation (middle example). This method of masking produces a result that contains artifacts near finely-detailed portion of the image, including hair or semi-transparent objects. The alternative is to use chroma key compositing with a fixed-colour background (also known as green screening) as commonly performed in news broadcoasts and CGI.
 
-Lin et al. proposes a new method that is able to achieve much higher quality result with respect to fine details, while also running in real time, without the need for a fixed-colour background. To achieve this, the model uses an additional input to the model: image of the pure background, and outputs an alpha-level masking (known as alpha matte in the paper) of the subject foreground. In essence, this is a segmentation model which outputs an alpha mask instead of a binary mask.
+Lin et al. proposes a new method that is able to achieve much higher quality result with respect to fine details, while also running in real time, without the need for a fixed-colour background. To achieve this, the model uses an additional input to the model: image of the pure background, and outputs an alpha-level masking (known as alpha matte in the paper) of the subject foreground. In essence, this is a segmentation model which outputs an alpha mask instead of a binary mask, and is able to do so in real time.
 
 ![alt text](https://github.com/DarrelYee/Background_Matting_Tutorial/blob/main/model.png)
 
