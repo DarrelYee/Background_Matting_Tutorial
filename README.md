@@ -2,7 +2,7 @@
 
 Hi! This is my hands on experience with an interesting library for performing background replacement of images or videos.
 
-Link to the Github code: https://github.com/PeterL1n/BackgroundMattingV2
+Link to the Github repository: https://github.com/PeterL1n/BackgroundMattingV2
 
 Link to paper: https://arxiv.org/abs/2012.07810
 
@@ -20,7 +20,7 @@ More can be read from their paper (link above!), but for now let's move on to so
 
 ## Implementation
 
-For this hands-on I will be running my code off Google Colab as all the dependencies are already installed. The code is adapted from resources on the author's Github page (link above!), but edited for a step-by-step explanation.
+For this hands-on I will be running my code off Google Colab as all the dependencies are already installed. The code is adapted from resources on the author's Github page (link above!), but edited for a step-by-step explanation. While I explain the individual steps here, you can refer to the jupyter notebook in this repo for the full code.
 
 First, import the following libraries:
 
