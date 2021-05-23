@@ -8,7 +8,7 @@ Link to paper: https://arxiv.org/abs/2012.07810
 
 ![alt text](https://github.com/DarrelYee/Background_Matting_Tutorial/blob/main/demo.png)
 
-Exisiting background removal methods tend to use a binary mask to separate the foreground subject from the background; see above image for an example of Zoom's implementation. This method of masking produces a result that contains artifacts near finely-detailed portion of the image, including hair or semi-transparent objects. The alternative is to use a chroma key compositing with a fixed-colour background (also known as green screening) as commonly performed in new broadcoasts and CGI.
+Exisiting background removal methods tend to use a binary mask to separate the foreground subject from the background; see above image for an example of Zoom's implementation (middle example). This method of masking produces a result that contains artifacts near finely-detailed portion of the image, including hair or semi-transparent objects. The alternative is to use chroma key compositing with a fixed-colour background (also known as green screening) as commonly performed in news broadcoasts and CGI.
 
 Lin et al. proposes a new method that is able to achieve much higher quality result with respect to fine details, while also running in real time, without the need for a fixed-colour background. To achieve this, the model uses an additional input to the model: image of the pure background, and outputs an alpha-level masking (known as alpha matte in the paper) of the subject foreground. In essence, this is a segmentation model which outputs an alpha mask instead of a binary mask.
 
@@ -35,11 +35,12 @@ import matplotlib.pyplot as plt
 import cv2
 ```
 
-Then, clone the Github repo to your Gdrive and make it your working directory:
+Then, clone or copy the Github repo contents to your Gdrive and make it your working directory. In our code we manually downloaded the repo and linked to it with os.chdir():
 ```python
 from google.colab import drive
 drive.mount('/content/gdrive')
 
+# Change this to your repo folder.
 os.chdir('//content//gdrive//My Drive//BackgroundMattingV2-master')
 ```
 
@@ -50,15 +51,17 @@ from model import MattingRefine
 device = torch.device('cuda')
 precision = torch.float32
 
+# Change the backbone arg to whichever model you downloaded
 model = MattingRefine(backbone='mobilenetv2',
                       backbone_scale=0.25,
                       refine_mode='sampling',
                       refine_sample_pixels=80_000)
 
+# Replace this path with that of your downloaded weights.
 model.load_state_dict(torch.load('pytorch_mobilenetv2.pth'))
 model = model.eval().to(precision).to(device)
 ```
-Note that the weights we are using are from the mobilenetV2 dataset. This is the most lightweight of the three datasets the authors used for training, which also includes ResNet-50 and ResNet-101. For our purposes mobilenetV2 will suffice.
+Before continuing, ensure you have downloaded the weights for the model (refer to Github page for links). Note that the weights we are using are from the mobilenetV2 dataset. This is the most lightweight of the three datasets the authors used for training, which also includes ResNet-50 and ResNet-101. For our purposes mobilenetV2 will suffice.
 
 The next step is to run our model! Load your source and background images and convert them to tensors as shown below. The repo contains links to several test images and backgrounds to try out. Once everything is setup, we can run the model:
 
@@ -126,3 +129,6 @@ Notice that fine details such as hair are well-contrasted with the background wi
 This tutorial thus covers the application of the model to single images. However, this can easily be applied to video input by performing a frame read and applying the model to each frame. Real-time video application of this model will require a parallel processing architecture which is beyond the scope of this tutorial.
 
 Thanks for reading!
+
+
+_Rights to all images belong to their respective authors._
